@@ -1,0 +1,581 @@
+.office-container {
+   top: 0px;
+   font-family: 'Inter', sans-serif;
+ }
+ .office-header {
+  top: 0px;
+  text-align: center;
+ }
+ .office-layout {
+   display: flex;
+   gap: 20px;
+ }
+ .canvas-wrapper {
+   width: 100%;
+   max-width: 800px;
+   overflow: hidden;
+ }
+ .rooms-grid {
+   flex: 2;
+   display: flex;
+   flex-direction: column;
+   gap: 16px;
+ }
+ .room-card {
+   border: 1px solid #e0e0e0;
+   border-radius: 8px;
+   padding: 14px;
+   background: #ffffff;
+   cursor: pointer;
+   transition: box-shadow 0.2s ease;
+   text-align: center;
+ }
+ .room-card:hover {
+   box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+ }
+ .add-room {
+   font-weight: bold;
+   color: #555;
+   background: #f9f9f9;
+ }
+ .side-panel {
+   flex: 1;
+   display: flex;
+   flex-direction: column;
+   gap: 20px;
+ }
+ .card {
+   border: 1px solid #e0e0e0;
+   border-radius: 10px;
+   padding: 16px;
+   background: #fff;
+   box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+ }
+ .presence-item {
+   display: flex;
+   align-items: center;
+   margin: 6px 0;
+   font-size: 14px;
+   color: #444;
+ }
+ .status-dot {
+   width: 10px;
+   height: 10px;
+   border-radius: 50%;
+   margin-right: 8px;
+   display: inline-block;
+ }
+ @media (max-width: 1024px) {
+   .office-layout {
+     flex-direction: column;
+   }
+   .side-panel {
+     flex-direction: row;
+     flex-wrap: wrap;
+   }
+   .card {
+     flex: 1 1 calc(50% - 10px);
+   }
+ }
+ @media (max-width: 600px) {
+   .card {
+     flex: 1 1 100%;
+   }
+   .canvas-wrapper {
+     max-width: 100%;
+   }
+ }
+.worker-form {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.worker-form input,
+.worker-form select {
+  padding: 6px 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+}
+.form-actions {
+  display: flex;
+  gap: 8px;
+}
+.form-actions button {
+  padding: 6px 10px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.form-actions button:first-child {
+  background: #2d89ef;
+  color: white;
+}
+.form-actions button:last-child {
+  background: #f3f3f3;
+}
+
+.room-settings {
+  font-family: "Inter", "Segoe UI", sans-serif;
+  background: linear-gradient(180deg, #ffffff 0%, #f7f9fc 100%);
+  border-radius: 14px;
+  padding: 20px 25px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.06);
+  max-width: 780px;
+  margin: auto;
+  color: #222;
+  transition: all 0.3s ease;
+}
+
+.room-settings h4 {
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: #1b1b1b;
+  border-left: 4px solid #0078d7;
+  padding-left: 8px;
+}
+
+.room-settings hr {
+  border: none;
+  border-top: 1px solid #e5e9f0;
+  margin: 20px 0;
+}
+
+/* --- Dropdown --- */
+.dropdown {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 12px;
+}
+
+.dropdown-toggle {
+  padding: 8px 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background: #fff;
+  font-weight: 500;
+  color: #333;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+}
+
+.dropdown-toggle:hover {
+  background: #f3f7ff;
+  border-color: #0078d7;
+  color: #0078d7;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 110%;
+  left: 0;
+  width: 240px;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+  padding: 10px 14px;
+  z-index: 999;
+  animation: dropdownSlide 0.25s ease;
+}
+
+@keyframes dropdownSlide {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 4px;
+  border-radius: 6px;
+  transition: background 0.2s;
+}
+
+.dropdown-item:hover {
+  background: #f5f8ff;
+}
+
+/* --- Widget list --- */
+.room-settings ul {
+  list-style: none;
+  margin: 8px 0;
+  padding-left: 0;
+}
+
+.room-settings li {
+  background: #f8faff;
+  border: 1px solid #e1e8f0;
+  border-radius: 8px;
+  padding: 6px 10px;
+  margin-bottom: 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.2s;
+}
+
+.room-settings li:hover {
+  background: #eef5ff;
+  border-color: #0078d7;
+}
+
+/* --- Buttons --- */
+.room-settings .remove-content {
+  border: none;
+  border-radius: 6px;
+  padding: 6px 10px;
+  cursor: pointer;
+  background: #0078d7;
+  color: white;
+  font-weight: 500;
+  transition: background 0.25s ease;
+}
+
+.room-settings button:hover {
+  background: #0060b7;
+}
+
+.room-settings button[style*="color: red"] {
+  background: transparent;
+  color: #d92b2b !important;
+  border: 1px solid #f3b2b2;
+  font-weight: 500;
+  padding: 5px 9px;
+  transition: all 0.2s ease;
+}
+
+.room-settings button[style*="color: red"]:hover {
+  background: #ffe5e5;
+}
+.del-room-func-btn{
+     border: none;
+     background: transparent;
+     color: red;
+     cursor: pointer;
+     font-size: 14px;
+}
+/* --- Content Editor --- */
+.content-editor {
+  background: #ffffff;
+  border: 1px solid #e3e8ef;
+  border-radius: 10px;
+  padding: 14px;
+  margin-top: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+}
+
+.content-editor label {
+  font-weight: 500;
+  font-size: 13px;
+  color: #555;
+  margin-bottom: 5px;
+  display: block;
+}
+
+.content-editor textarea,
+.content-editor input[type="text"],
+.content-add select,
+.content-editor input[type="number"] {
+  width: 100%;
+  border: 1px solid #cfd8e3;
+  border-radius: 6px;
+  padding: 7px 10px;
+  margin-bottom: 8px;
+  font-size: 14px;
+  background: #fafbff;
+  transition: all 0.2s ease;
+}
+
+.content-editor textarea:focus,
+.content-editor input:focus,
+.content-add select:focus {
+  border-color: #0078d7;
+  background: #fff;
+  outline: none;
+}
+
+.content-add {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.content-add label {
+  font-weight: 500;
+  color: #444;
+}
+.upload-file{
+  display: inline-flex; 
+  text-align: center; 
+  cursor: pointer; 
+  gap: 1px;
+  width: 40px;
+  font-size: 20px;
+}
+/* --- Image Gallery --- */
+.image-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.image-thumb {
+  display: inline-block;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+  transition: transform 0.2s ease;
+}
+.image-thumb img{
+    max-width: 100px;
+    max-height: 100px;
+    border-radius: 4px;
+    object-fit: cover;
+}
+.image-thumb:hover {
+  transform: scale(1.05);
+}
+.remove-content-img-btn{
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    background: red;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    font-size: 12px;
+    line-height: 20px;
+    text-align: center;
+    padding: 0;
+}
+.text-color, .font-size{
+  margin-right: 12px;
+}
+.text-styles{
+    display: flex; 
+    gap: 10px; 
+    margin-top: 8px;
+}
+/* --- Sliders & inputs --- */
+input[type="color"],
+input[type="file"],
+input[type="range"] {
+  margin-bottom: 8px;
+}
+.overlay{
+    margin: 10px 0px;
+}
+
+input[type="range"] {
+  width: 50%;
+  accent-color: #0078d7;
+  margin-top: 10px;
+}
+
+/* --- Access Section --- */
+.access-tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.access-tabs select {
+  background: #f3f6fa;
+  border: 1px solid #d5deea;
+  border-radius: 8px;
+  padding: 8px 14px;
+  color: #333;
+  transition: all 0.25s;
+}
+
+.access-tabs option.active {
+  background: #0078d7;
+  color: #fff;
+  border-color: #0078d7;
+}
+
+.access-tabs option:hover {
+  background: #e8f0ff;
+  color: #0078d7;
+}
+
+/* --- Animations --- */
+@keyframes fadeSlideIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.room-settings .content-editor,
+.room-settings ul li {
+  animation: fadeSlideIn 0.3s ease;
+}
+/*---Controls---*/
+.layout-mode-btn{
+    padding: 6px 12px;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    cursor: pointer;
+}
+.save-layout-btn{
+    padding: 6px 12px;
+    border: none;
+    border-radius: 6px;
+    background: #27ae60;
+    color: white;
+    cursor: pointer;
+}
+.cancel-changes-btn{
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background: #f0f0f0;
+    color: #333;
+    cursor: pointer;
+}
+/*-----Worker------*/
+.workers-list{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+}
+.worker-action-btn{
+   display: flex; 
+   gap: 6px;
+}
+.worker-edit-btn{
+   background: #f0f0f0;
+   border: 1px solid #ccc;
+   padding: 2px 6px;
+   cursor: pointer;
+}
+.worker-del-btn{
+   background: red;
+   color: white;
+   border: none;
+   padding: 2px 6px;
+   cursor: pointer;
+}
+
+
+.office-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 12px 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+  margin: 20px;
+}
+
+/* Bottom Toolbar */
+.design-toolbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: auto;
+  background: #1e1e1e;
+  color: white;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 5px 0;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.25);
+  z-index: 999;
+  animation: slideUp 0.3s ease forwards;
+}
+
+.tool-btn {
+  background: transparent;
+  color: #ccc;
+  border: none;
+  font-size: 15px;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.tool-btn:hover {
+  color: white;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.tool-btn.active {
+  background: #0078d7;
+  color: white;
+}
+
+/* Active section panel above toolbar */
+.design-panel {
+  position: fixed;
+  bottom: 60px;
+  left: 1%;
+  transform: translateX(-60%);
+  width: 90%;
+  max-width: 90%;
+  max-height: 60%;
+  background: white;
+  border-radius: 12px 12px 0 0;
+  box-shadow: 0 -2px 14px rgba(0, 0, 0, 0.1);
+  padding: 20px 24px;
+  z-index: 998;
+  animation: fadeIn 0.3s ease forwards;
+  overflow-y: auto;
+}
+
+.panel-section h4 {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+.content-btns{
+  text-align: center;
+  padding: 20px 0px;
+  margin: 10px 0px;
+}
+.content-btns button{
+  margin: 0px 10px;
+}
+@media (min-width: 600px) {
+   .design-panel {
+     left: 20%;
+     width: 48%;
+   }
+   .design-toolbar{
+    margin-left: 22.5%;
+    width: 58%;
+   }
+ }
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 20px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+

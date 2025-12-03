@@ -1,0 +1,69 @@
+# -------------------------
+# Django + REST Framework
+# -------------------------
+Django==5.0.6
+djangorestframework==3.16.2
+django-cors-headers==4.7.0
+
+# -------------------------
+# Authentication
+# -------------------------
+djangorestframework-simplejwt==5.5.1
+
+# -------------------------
+# Database
+# -------------------------
+psycopg2-binary==2.9.10
+
+# -------------------------
+# Async Features (Channels)
+# -------------------------
+channels==4.3.1
+channels-redis==4.3.0
+daphne==4.1.2
+# -------------------------
+# Background Jobs (Celery)
+# -------------------------
+celery==5.4.0
+redis==5.0.4
+django-celery-beat==2.7.0
+
+# Optional: performance, caching
+django-redis==5.4.0
+
+# -------------------------
+# Email + SMS
+# -------------------------
+twilio==9.2.3
+sendgrid==6.11.0
+python-http-client==3.3.7
+
+# -------------------------
+# Environment Variables
+# -------------------------
+python-dotenv==1.0.1
+
+# -------------------------
+# Security
+# -------------------------
+cryptography==42.0.4
+
+# -------------------------
+# Utilities
+# -------------------------
+Pillow==10.3.0
+requests==2.31.0
+
+# Optional: performance, caching
+django-redis==5.4.0
+
+# For async tasks (optional but recommended)
+asgiref==3.8.1
+
+# For API documentation (optional)
+drf-yasg==1.21.7
+# -------------------------
+# Optional but recommended
+# -------------------------
+gunicorn==22.2.0     # For production WSGI
+uvicorn==0.29.0      # For ASGI + Channels

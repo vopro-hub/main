@@ -1,0 +1,146 @@
+.wallet-widget {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 14px;
+  margin: 15px 0px;
+  padding: 16px;
+  width: auto;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  font-family: sans-serif;
+  font-size: 14px;
+}
+
+.wallet-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.wallet-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: bold;
+}
+
+.status {
+  font-size: 10px;
+  padding: 2px 5px;
+  border-radius: 6px;
+  margin-left: 6px;
+}
+.status.online {
+  background: #e1fbe1;
+  color: #187d18;
+}
+.status.offline {
+  background: #eee;
+  color: #777;
+}
+
+.refresh-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #555;
+}
+.refresh-btn:hover {
+  color: #000;
+}
+
+.spin {
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  from { transform: rotate(0); }
+  to { transform: rotate(360deg); }
+}
+
+.wallet-stats {
+  margin: 10px 0;
+  display: flex;
+  justify-content: space-between;
+  padding: 2px 0;
+  line-height: 1.6;
+}
+
+.wallet-logs {
+  margin-top: 10px;
+}
+.logs-title {
+  font-size: 12px;
+  color: #555;
+  margin-bottom: 5px;
+}
+.wallet-logs ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-height: 120px;
+}
+.log-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 2px 0;
+}
+.amount.negative {
+  color: #d9534f;
+}
+.amount.positive {
+  color: #28a745;
+}
+.empty {
+  text-align: center;
+  color: #888;
+  font-size: 12px;
+}
+
+
+/* Modal Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 8000;
+}
+
+.modal {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 260px;
+  text-align: center;
+}
+
+.modal input {
+  width: 100%;
+  padding: 6px;
+  margin-top: 6px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 12px;
+}
+
+.modal-actions button {
+  flex: 1;
+  margin: 0 4px;
+  padding: 6px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.confirm{
+  background:#0a7cff;
+  color: white;
+}
+.cancel-btn {
+  background: #ddd;
+}

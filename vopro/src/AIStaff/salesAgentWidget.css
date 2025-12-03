@@ -1,0 +1,118 @@
+.sales-agent-floating-btn {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  background: #007bff;
+  color: white;
+  font-size: 22px;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+  z-index: 9999;
+}
+
+.sales-agent-widget {
+  position: fixed;
+  bottom: 100px;
+  right: 25px;
+  width: 350px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  z-index: 10000;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.widget-header {
+  background: #007bff;
+  color: white;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.widget-controls {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 10px;
+  background: #f7f7f7;
+}
+
+.filter-select {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 4px;
+}
+
+.widget-body {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+.activity-feed {
+  flex: 1;
+  margin-bottom: 10px;
+}
+
+.log-item {
+  border-left: 3px solid #ccc;
+  padding: 5px 8px;
+  margin-bottom: 5px;
+  font-size: 14px;
+  background: #f9f9f9;
+  border-radius: 4px;
+}
+
+.log-item.ai {
+  border-color: #007bff;
+}
+
+.log-item.system {
+  border-color: #6c757d;
+}
+
+.log-item.error {
+  border-color: red;
+}
+
+.timestamp {
+  font-size: 11px;
+  color: #999;
+}
+
+.chat-input {
+  display: flex;
+  gap: 5px;
+}
+
+.chat-input input {
+  flex: 1;
+  padding: 6px;
+}
+
+.chat-input button {
+  padding: 6px 12px;
+}
+
+.lead-form {
+  border-top: 1px solid #eee;
+  margin-top: 10px;
+  padding-top: 10px;
+}
+
+.lead-form input {
+  width: 100%;
+  margin-bottom: 5px;
+  padding: 6px;
+}

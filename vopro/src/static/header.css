@@ -1,0 +1,74 @@
+/* Theme Variables */
+:root {
+  --bg: #ffffff;
+  --text: #333333;
+}
+
+[data-theme='dark'] {
+  --bg: #121212;
+  --text: #ffffff;
+}
+
+/* Base styles */
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1rem;
+  box-sizing: border-box;
+  background: var(--bg);
+  color: var(--text);
+  position: fixed;
+  width: 100%;
+  height: 70px;
+  top: 0;
+  z-index: 1000;
+  border-bottom: 1px solid #ddd;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--text);
+}
+
+/* Header Buttons */
+.header-buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+.menu-btn {
+  display: block;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--text);
+  transition: transform 0.2s ease;
+}
+
+.menu-btn:hover {
+  transform: scale(1.1);
+}
+
+.theme-toggle {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: var(--text);
+  transition: transform 0.2s ease;
+}
+
+.theme-toggle:hover {
+  transform: rotate(20deg);
+}
+
+/* Hide menu toggle on large screens */
+@media (min-width: 768px) {
+  .menu-btn {
+    display: none;
+  }
+}
