@@ -40,7 +40,7 @@ services:
   ############################################################
   nginx:
     image: nginx:1.25
-    container_name: nginx
+    container_name: nginx 
     depends_on:
       - backend
       - frontend

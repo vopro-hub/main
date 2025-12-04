@@ -1,43 +1,50 @@
-# Dockerfile
+# ---------------------------
+# Base Python Image
+# ---------------------------
 FROM python:3.12-slim
 
-ENV PYTHONDONTWRITEBYTECODE 1
-ENV PYTHONUNBUFFERED 1
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
 
-# build deps
-RUN apt-get update \
-    && apt-get install -y --no-install-recommends \
-       build-essential \
-       libpq-dev \
-       curl \
-       git \
+# ---------------------------
+# Install System Dependencies
+# ---------------------------
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
+    libpq-dev \
+    netcat-openbsd \
+    curl \
     && rm -rf /var/lib/apt/lists/*
 
-# workdir
+# ---------------------------
+# Set Working Directory
+# ---------------------------
 WORKDIR /app
 
-# copy pip requirements
+# ---------------------------
+# Install Python Dependencies
+# ---------------------------
 COPY requirements.txt /app/requirements.txt
 
-# install python deps
-RUN python -m pip install --upgrade pip setuptools wheel
-RUN pip install --no-cache-dir -r /app/requirements.txt
+RUN python -m pip install --upgrade pip setuptools wheel \
+    && pip install --no-cache-dir -r /app/requirements.txt
 
-# copy project
+# ---------------------------
+# Copy Project Files
+# ---------------------------
 COPY . /app
 
-# create static & media dir
-RUN mkdir -p /vol/web/static /vol/web/media
+# ---------------------------
+# Add Entrypoint Script
+# ---------------------------
+COPY docker-entrypoint.sh /app/docker-entrypoint.sh
+RUN chmod +x /app/docker-entrypoint.sh
 
-# collect static (will use production settings via DJANGO_SETTINGS_MODULE)
-# We do this at container start time in entrypoint for flexibility
+ENTRYPOINT ["/app/docker-entrypoint.sh"]
 
-# expose port for Daphne
+# ---------------------------
+# Gunicorn (production WSGI)
+# ---------------------------
+CMD ["gunicorn", "core.wsgi:application", "--bind", "0.0.0.0:8000"]
+
 EXPOSE 8000
-
-# default entrypoint (you can override in docker-compose)
-COPY ./nginx/docker-entrypoint.sh /app/nginx/docker-entrypoint.sh
-RUN chmod +x /app/nginx/docker-entrypoint.sh
-
-ENTRYPOINT ["/app/nginx/docker-entrypoint.sh"]
-CMD ["daphne", "-b", "0.0.0.0", "-p", "8000", "PROJECT_NAME.asgi:application"]
