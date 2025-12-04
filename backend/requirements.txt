@@ -65,5 +65,5 @@ drf-yasg==1.21.7
 # -------------------------
 # Optional but recommended
 # -------------------------
-gunicorn==22.2.0     # For production WSGI
+gunicorn==23.0.0     # For production WSGI
 uvicorn==0.29.0      # For ASGI + Channels
