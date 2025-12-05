@@ -5,8 +5,8 @@ WORKDIR /app
 ENV PATH /app/node_modules/.bin:$PATH
 
 COPY package.json package-lock.json ./
-RUN npm ci --silent
-
+RUN npm install
+RUN apk add --no--cache python3 make g++ libc6-compat
 COPY . /app
 RUN npm run build
 
@@ -18,7 +18,7 @@ FROM nginx:1.25-alpine AS runtime
 
 # Copy build output to a named volume (compose mounts)
 RUN rm -rf /usr/share/nginx/html/*
-COPY --from=build /app/build /usr/share/nginx/html
+COPY --from=build /app/dist /usr/share/nginx/html
 
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
