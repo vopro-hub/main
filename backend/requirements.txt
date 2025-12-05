@@ -57,8 +57,7 @@ requests==2.31.0
 # Optional: performance, caching
 django-redis==5.4.0
 
-# For async tasks (optional but recommended)
-asgiref==3.8.1
+
 
 # For API documentation (optional)
 drf-yasg==1.21.7
