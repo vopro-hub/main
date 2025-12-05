@@ -6,7 +6,7 @@ ENV PATH /app/node_modules/.bin:$PATH
 
 COPY package.json package-lock.json ./
 RUN npm install
-RUN apk add --no--cache python3 make g++ libc6-compat
+
 COPY . /app
 RUN npm run build
 
