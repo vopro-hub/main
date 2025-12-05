@@ -1,9 +1,24 @@
-FROM node:20 AS build
+# frontend/Dockerfile
+FROM node:18-alpine as build
 
 WORKDIR /app
-COPY package*.json ./
-RUN npm install
-COPY . .
+ENV PATH /app/node_modules/.bin:$PATH
+
+COPY package.json package-lock.json ./
+RUN npm ci --silent
+
+COPY . /app
 RUN npm run build
 
-# Output will be copied via volume to Nginx container
+# Serve build with nginx (we will let nginx container mount the build)
+FROM nginx:1.25-alpine AS runtime
+
+# Copy a minimal nginx config if you want local test (we use main nginx in deploy)
+#COPY deploy/nginx.frontend.conf /etc/nginx/conf.d/default.conf
+
+# Copy build output to a named volume (compose mounts)
+RUN rm -rf /usr/share/nginx/html/*
+COPY --from=build /app/build /usr/share/nginx/html
+
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]

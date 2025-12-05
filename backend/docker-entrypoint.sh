@@ -1,28 +1,29 @@
 #!/bin/bash
 set -e
 
-# Wait for PostgreSQL
-echo "Waiting for PostgreSQL at $POSTGRES_HOST:$POSTGRES_PORT..."
-until nc -z "$POSTGRES_HOST" "$POSTGRES_PORT"; do
-  echo "Postgres not ready - retrying..."
-  sleep 2
-done
-echo "Postgres is ready!"
+# wait for Postgres
+POSTGRES_HOST=${POSTGRES_HOST:-$DATABASE_HOST}
+POSTGRES_PORT=${POSTGRES_PORT:-$DATABASE_PORT}
 
-# Run migrations
+if [ -n "$POSTGRES_HOST" ]; then
+  echo "Waiting for Postgres at $POSTGRES_HOST:$POSTGRES_PORT..."
+  until nc -z "$POSTGRES_HOST" "$POSTGRES_PORT"; do
+    echo "Postgres not ready - sleeping 2s"
+    sleep 2
+  done
+  echo "Postgres is up - continuing"
+fi
+
+# Run migrations, collect static
 echo "Running migrations..."
 python manage.py migrate --noinput
 
-# Collect static files
 echo "Collecting static files..."
 python manage.py collectstatic --noinput
 
-# Ensure media folder exists
-echo "Ensuring media directory exists..."
-mkdir -p /app/media
-chown -R www-data:www-data /app/media || true
+# create media dir if not exists and set safe permissions
+mkdir -p ${MEDIA_ROOT:-/vol/web/media}
+chown -R www-data:www-data ${MEDIA_ROOT:-/vol/web/media} || true
 
-# Optionally: preload cache, create superuser, etc.
-
-echo "Starting application..."
+# exec the container CMD
 exec "$@"
