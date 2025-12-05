@@ -4,7 +4,10 @@ FROM node:18 as build
 WORKDIR /app
 ENV PATH /app/node_modules/.bin:$PATH
 
+
 COPY package.json package-lock.json ./
+RUN apk add --no-cache libc6-compat
+
 RUN npm ci
 
 COPY . /app
