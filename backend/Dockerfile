@@ -27,7 +27,7 @@ RUN python -m pip install --upgrade pip setuptools wheel \
 COPY . /app
 
 # Add entrypoint
-COPY backend/docker-entrypoint.sh /app/docker-entrypoint.sh
+COPY docker-entrypoint.sh /app/docker-entrypoint.sh
 RUN chmod +x /app/docker-entrypoint.sh
 
 ENTRYPOINT ["backend/docker-entrypoint.sh"]
