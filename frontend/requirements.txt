@@ -1,2 +1,9 @@
+React, 
+create-vite@7.1.1,
+React-router-dom,
+axios,
+-D tailwindcss postcss autoprefixer #Not yet install
+-D @types/react-router-dom # Not yet install
 react-framework
 react-konva konva 
+@tiptap/react @tiptap/starter-kit
