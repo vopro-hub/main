@@ -9,7 +9,6 @@ RUN npm ci
 COPY . /app
 RUN npm run build
 
-# Serve using nginx
 FROM nginx:1.25-alpine AS runtime
 
 RUN rm -rf /usr/share/nginx/html/*
