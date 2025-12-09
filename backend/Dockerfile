@@ -27,10 +27,10 @@ RUN python -m pip install --upgrade pip setuptools wheel \
 COPY . /app
 
 # Add entrypoint
-COPY docker-entrypoint.sh /app/docker-entrypoint.sh
+COPY ../docker-entrypoint.sh /app/docker-entrypoint.sh
 RUN chmod +x /app/docker-entrypoint.sh
 
-ENTRYPOINT ["./docker-entrypoint.sh"]
+ENTRYPOINT ["/app/docker-entrypoint.sh"]
 
 # Default command is Daphne for ASGI (Channels)
 CMD ["daphne", "-b", "0.0.0.0", "-p", "8000", "virtual_office.asgi:application"]
