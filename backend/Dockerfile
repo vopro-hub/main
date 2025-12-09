@@ -30,7 +30,7 @@ COPY . /app
 COPY ../docker-entrypoint.sh /app/docker-entrypoint.sh
 RUN chmod +x /app/docker-entrypoint.sh
 
-ENTRYPOINT ["/app/docker-entrypoint.sh"]
+ENTRYPOINT ["./docker-entrypoint.sh"]
 
 # Default command is Daphne for ASGI (Channels)
 CMD ["daphne", "-b", "0.0.0.0", "-p", "8000", "virtual_office.asgi:application"]
